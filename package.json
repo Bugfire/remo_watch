@@ -1,0 +1,33 @@
+{
+  "name": "remo_watch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node build/index.js ./",
+    "build": "npx tsc",
+    "watch": "npx tsc --watch",
+    "lint": "eslint src/index.ts",
+    "lint:fix": "eslint --fix src/index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "cron": "^1.7.1",
+    "mysql": "^2.17.1",
+    "ts-node": "^8.1.0",
+    "typescript": "^3.4.5"
+  },
+  "devDependencies": {
+    "@types/cron": "^1.7.1",
+    "@types/mysql": "^2.15.7",
+    "@types/node": "^12.7.5",
+    "@typescript-eslint/eslint-plugin": "^2.3.0",
+    "@typescript-eslint/parser": "^2.3.0",
+    "eslint": "^6.4.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "prettier": "^1.18.2"
+  }
+}
