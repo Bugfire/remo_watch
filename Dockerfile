@@ -19,6 +19,6 @@ RUN npm install --production
 
 COPY --from=build /usr/src/app/build/*.js /usr/src/app/
 
-VOLUME ["/config"]
+VOLUME [ "/config" ]
 
 CMD [ "node", "index.js", "/" ]
