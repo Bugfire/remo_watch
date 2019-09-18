@@ -1,6 +1,6 @@
 ###
 
-FROM node:10 AS build
+FROM node:10.15-alpine AS build
 
 COPY package*.json tsconfig.json /usr/src/app/
 COPY src/* /usr/src/app/src/
@@ -11,7 +11,7 @@ RUN npx tsc
 
 ###
 
-FROM node:10
+FROM node:10.15-alpine
 
 COPY package*.json /usr/src/app/
 WORKDIR /usr/src/app
