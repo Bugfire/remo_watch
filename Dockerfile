@@ -20,4 +20,4 @@ COPY --from=build /usr/src/app/dist/ /usr/src/app/dist/
 
 VOLUME [ "/config" ]
 
-CMD [ "npm", "run", "start" ]
+CMD [ "node", "dist/index.js", "/" ]
