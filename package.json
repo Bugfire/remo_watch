@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/index.js ./",
-    "build": "npx tsc",
-    "watch": "npx tsc --watch",
+    "dev": "ts-node src/index.ts ./",
+    "build": "tsc",
+    "watch": "tsc --watch",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint --fix src/**/*.ts"
   },
@@ -27,6 +28,7 @@
     "eslint-config-prettier": "^6.3.0",
     "eslint-plugin-prettier": "^3.1.1",
     "prettier": "^1.18.2",
+    "ts-node": "^8.4.1",
     "typescript": "^3.6.3"
   }
 }

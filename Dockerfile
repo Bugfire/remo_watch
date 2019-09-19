@@ -6,8 +6,7 @@ COPY package*.json tsconfig.json /usr/src/app/
 COPY src /usr/src/app/src/
 WORKDIR /usr/src/app
 RUN npm install
-
-RUN npx tsc 
+RUN npm run build 
 
 ###
 
@@ -21,4 +20,4 @@ COPY --from=build /usr/src/app/dist/ /usr/src/app/dist/
 
 VOLUME [ "/config" ]
 
-CMD [ "node", "dist/index.js", "/" ]
+CMD [ "npm", "run", "start" ]

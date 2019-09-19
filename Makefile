@@ -23,17 +23,14 @@ logs: ## Show docker logs
 lint: ## Run eslint
 	npm run lint
 
-run-local: ## Run localy
-	npm run build
-	npm run start
+dev: ## Run localy
+	npm run dev
 
 create-table: ## Create table
-	npm run build
-	node dist/tables/create_table.js ./
+	npx ts-node src/tables/create_table.ts ./
 
 drop-table: ## Drop table
-	npm run build
-	node dist/tables/drop_table.js ./
+	npx ts-node src/tables/drop_table.ts ./
 
 clean: ## Clean docker container, images
 	docker ps -a | grep -v "CONTAINER" | awk '{print $$1}' | xargs docker rm
