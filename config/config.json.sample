@@ -5,8 +5,9 @@
         "user": "MYSQL_DB_USER_HERE",
         "password": "MYSQL_DB_PASSWORD_HERE"
     },
+    "table": "MYSQL_DB_TABLE_NAME_HERE",
     "token": "NATURE_REMO_API_TOKEN_HERE",
     "devices": {
-        "NATURE_REMO_DEVICE_ID_HERE": "MSQL_DB_TABLE_NAME_HERE"
+        "NATURE_REMO_DEVICE_ID_HERE": "NATURE_REMO_ID_OF_OUR_TABLE_HERE"
     }
 }

@@ -27,6 +27,14 @@ run-local: ## Run localy
 	npm run build
 	npm run start
 
+create-table: ## Create table
+	npm run build
+	node dist/tables/create_table.js ./
+
+drop-table: ## Drop table
+	npm run build
+	node dist/tables/drop_table.js ./
+
 clean: ## Clean docker container, images
 	docker ps -a | grep -v "CONTAINER" | awk '{print $$1}' | xargs docker rm
 	docker images -a | grep "^<none>" | awk '{print $$3}' | xargs docker rmi

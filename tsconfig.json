@@ -3,13 +3,13 @@
         "module": "commonjs",
         "target": "es2017",
         "sourceMap": true,
-        "outDir": "build",
+        "outDir": "dist",
         "types": [
             "node"
         ]
     },
     "include": [
-        "src/*"
+        "src/**/*.ts"
     ],
     "exclude": [
         "node_modules"
