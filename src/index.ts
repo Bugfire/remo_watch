@@ -21,22 +21,19 @@ const run = async (): Promise<void> => {
   const remoDevices = await RemoAPI.getDevices(CONFIG.token);
   const queries: string[] = [];
   remoDevices.forEach(v => {
-    if (typeof CONFIG.devices[v.id] !== "string") {
+    const remoId: string = CONFIG.devices[v.id];
+    if (typeof remoId !== "string") {
       console.error(
-        `Unknown or Invalid device [${v.id}] [${CONFIG.devices[v.id]}]`
+        `Unknown or Invalid device [${v.id}] [${remoId}]`
       );
       return;
     }
-    const remoId: string = CONFIG.devices[v.id];
-    const { te, hu, il, mo } = v.newest_events;
-    const teVal = typeof te === "undefined" ? "NULL" : te.val;
-    const huVal = typeof hu === "undefined" ? "NULL" : hu.val;
-    const ilVal = typeof il === "undefined" ? "NULL" : il.val;
-    const moVal = typeof mo === "undefined" ? "NULL" : mo.val;
+    const r: { [key: string]: number | string } = {};
+    ["te", "hu", "il", "mo"].forEach(attr => r[attr] = typeof v.newest_events[attr] === "undefined" ? "NULL" : v.newest_events[attr].val);
     // const timestamp = isoDateToJST(te.created_at);
     const timestamp = dbUtil.getDateJST();
     queries.push(
-      `INSERT INTO ${CONFIG.db.name}.${CONFIG.table} (datetime, remo_id, te, hu, il, mo) VALUES ("${timestamp}", "${remoId}", ${teVal}, ${huVal}, ${ilVal}, ${moVal})`
+      `INSERT INTO ${CONFIG.db.name}.${CONFIG.table} (datetime, remo_id, te, hu, il, mo) VALUES ("${timestamp}", "${remoId}", ${r.te}, ${r.hu}, ${r.il}, ${r.mo})`
     );
   });
   dbUtil.connectAndQueries(CONFIG.db, queries);
