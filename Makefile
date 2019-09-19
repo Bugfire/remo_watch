@@ -2,23 +2,20 @@
 
 .PHONY: $(shell egrep -o ^[a-zA-Z_-]+: $(MAKEFILE_LIST) | sed 's/://')
 
-PKG_NAME=remo_watch
-
 default: help
 
 build: ## Build docker
-	docker build -t ${PKG_NAME} .
+	docker-compose build
 
 run: ## Run docker
-	docker rm ${PKG_NAME} || true
-	docker run -d --name ${PKG_NAME} --volume=`pwd`/config:/config:ro ${PKG_NAME}
+	docker-compose down || true
+	docker-compose up
 
 stop: ## Stop docker
-	docker kill ${PKG_NAME} || true
-	docker rm ${PKG_NAME} || true
+	docker-compose down
 
 logs: ## Show docker logs
-	docker logs ${PKG_NAME}
+	docker-compose logs
 
 lint: ## Run eslint
 	npm run lint
