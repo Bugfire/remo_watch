@@ -5,6 +5,7 @@
  */
 
 import * as fs from "fs";
+
 import * as dbUtil from "../dbutil";
 import { Config } from "../config";
 

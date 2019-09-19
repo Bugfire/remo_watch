@@ -33,13 +33,15 @@ export const connect = (config: Config): mysql.Connection => {
   });
 };
 
+type ColumnType = number | string | Date | null;
+
 export const query = async (
   client: mysql.Connection,
   query: string
-): Promise<{ [key: string]: number | string }[]> => {
+): Promise<{ [key: string]: ColumnType }[]> => {
   return new Promise((resolve, reject): void => {
     // console.log(query);
-    client.query(query, (err, result: { [key: string]: number | string }[]) => {
+    client.query(query, (err, result: { [key: string]: ColumnType }[]) => {
       if (err) {
         reject(err);
       } else {
@@ -52,12 +54,12 @@ export const query = async (
 export const connectAndQueries = async (
   config: Config,
   queries: string[]
-): Promise<{ [key: string]: number | string }[][]> => {
+): Promise<{ [key: string]: ColumnType }[][]> => {
   if (queries.length === 0) {
     return [];
   }
   const client = connect(config);
-  const r: { [key: string]: number | string }[][] = [];
+  const r: { [key: string]: ColumnType }[][] = [];
   for (let i = 0; i < queries.length; i++) {
     try {
       r.push(await query(client, queries[i]));
