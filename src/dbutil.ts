@@ -1,5 +1,5 @@
 /**
- * @license remo_watch
+ * @license dbutil.ts
  * (c) 2019 Bugfire https://bugfire.dev/
  * License: MIT
  */
@@ -29,7 +29,8 @@ export const connect = (config: Config): mysql.Connection => {
     user: config.user,
     password: config.password,
     connectTimeout: 10000,
-    supportBigNumbers: true
+    supportBigNumbers: true,
+    timezone: "+09:00"
   });
 };
 
@@ -66,9 +67,7 @@ export const connectAndQueries = async (
     try {
       r.push(await query(client, queries[i]));
     } catch (ex) {
-      if (ex.toString().indexOf("Error: ER_DUP_ENTRY") !== 0) {
-        console.error(ex.toString());
-      }
+      console.error(ex.toString());
     }
   }
   client.end();
