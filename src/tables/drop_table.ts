@@ -4,17 +4,15 @@
  * License: MIT
  */
 
-import * as fs from "fs";
-
 import * as dbUtil from "../dbutil";
-import { Config } from "../config";
+
+import { LoadConfig } from "../myconfig";
 
 if (process.argv.length <= 2) {
   throw new Error("Invalid argument. Specify top directory of config.");
 }
-const CONFIG = new Config(
-  fs.readFileSync(`${process.argv[2]}config/config.json`, "utf8")
-);
+
+const CONFIG = LoadConfig(`${process.argv[2]}config/config.json`);
 
 const run = async (): Promise<void> => {
   const queries = [`DROP TABLE ${CONFIG.db.name}.${CONFIG.table};`];

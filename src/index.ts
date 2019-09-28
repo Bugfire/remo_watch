@@ -4,30 +4,32 @@
  * License: MIT
  */
 
-import * as fs from "fs";
 import * as cron from "cron";
 
 import * as dbUtil from "./dbutil";
 import * as RemoAPI from "./remoapi";
-import { Config } from "./config";
+
+import { LoadConfig } from "./myconfig";
 
 if (process.argv.length <= 2) {
   throw new Error("Invalid argument. Specify top directory of config.");
 }
-const CONFIG = new Config(
-  fs.readFileSync(`${process.argv[2]}config/config.json`, "utf8")
-);
+
+const CONFIG = LoadConfig(`${process.argv[2]}config/config.json`);
 
 const run = async (): Promise<void> => {
   const remoDevices = await RemoAPI.getDevices(CONFIG.token);
   const queries: string[] = [];
   remoDevices.forEach(v => {
-    const remoId: string = CONFIG.devices[v.id];
-    if (typeof remoId !== "string") {
+    const f = CONFIG.devices.find(d => v.id === d.id);
+    if (typeof f === "undefined") {
       console.error(
-        `Unknown or Invalid device [${v.id}] [${remoId}]`
+        `Unknown device [${v.id}]`
       );
       return;
+    }
+    const remoId: string = f.name;
+    if (typeof remoId !== "string") {
     }
     const r: { [key: string]: number | string } = {};
     const newestEvent = v.newest_events as { [key: string]: undefined | RemoAPI.RemoDeviceEvent };
