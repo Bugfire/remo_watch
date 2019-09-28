@@ -1,4 +1,3 @@
-
 /**
  * @license remo_watch
  * (c) 2019 Bugfire https://bugfire.dev/
@@ -7,8 +6,8 @@
 
 import * as fs from "fs";
 
-import { LoadConfig as LC, ConfigType } from "./config";
-import { DBConfig, DBConfigType } from "./dbutil";
+import { LoadConfig as LC, ConfigType } from "./common/config";
+import { DBConfig, DBConfigType } from "./common/dbutil";
 
 interface MyConfig {
   db: DBConfig;

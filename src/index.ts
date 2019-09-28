@@ -6,7 +6,7 @@
 
 import * as cron from "cron";
 
-import * as dbUtil from "./dbutil";
+import * as dbUtil from "./common/dbutil";
 import * as RemoAPI from "./remoapi";
 
 import { LoadConfig } from "./myconfig";
@@ -21,7 +21,7 @@ const run = async (): Promise<void> => {
   const remoDevices = await RemoAPI.getDevices(CONFIG.token);
   const queries: string[] = [];
   remoDevices.forEach(v => {
-    const f = CONFIG.devices.find(d => v.id === d.id);
+    const f = CONFIG.devices.find((d: {id: string, name: string}) => v.id === d.id);
     if (typeof f === "undefined") {
       console.error(
         `Unknown device [${v.id}]`
@@ -44,6 +44,8 @@ const run = async (): Promise<void> => {
     );
   });
   dbUtil.connectAndQueries(CONFIG.db, queries);
+
+  // console.log(queries);
 };
 
 const wrappedRun = async (): Promise<void> => {

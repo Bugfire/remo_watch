@@ -4,7 +4,7 @@
  * License: MIT
  */
 
-import * as dbUtil from "../dbutil";
+import * as dbUtil from "../common/dbutil";
 
 import { LoadConfig } from "../myconfig";
 
