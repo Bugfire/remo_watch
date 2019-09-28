@@ -69,4 +69,12 @@ const kick = async (): Promise<void> => {
   }
 };
 
+if (IS_DRYRUN) {
+  console.log("Start as DRYRUN");
+} else if (IS_DEBUG) {
+  console.log("Start as DEBUG");
+} else {
+  console.log("Start");
+}
+
 kick();
