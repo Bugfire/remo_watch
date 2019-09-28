@@ -46,12 +46,7 @@ const run = async (): Promise<void> => {
     );
   });
 
-  if (IS_DEBUG) {
-    console.log(queries);
-  }
-  if (!IS_DRYRUN) {
-    dbUtil.connectAndQueries(CONFIG.db, queries);
-  }
+  dbUtil.connectAndQueries(CONFIG.db, queries);
 };
 
 const wrappedRun = async (): Promise<void> => {
