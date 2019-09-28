@@ -1,4 +1,3 @@
-
 /**
  * @license remo_watch
  * (c) 2019 Bugfire https://bugfire.dev/
@@ -39,7 +38,7 @@ export const getDevices = async (token: string): Promise<RemoDevice[]> => {
     }
   });
   return apiResult.data;
-}
+};
 
 /* API Result
 [
