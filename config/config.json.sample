@@ -7,7 +7,10 @@
     },
     "table": "MYSQL_DB_TABLE_NAME_HERE",
     "token": "NATURE_REMO_API_TOKEN_HERE",
-    "devices": {
-        "NATURE_REMO_DEVICE_ID_HERE": "NATURE_REMO_ID_OF_OUR_TABLE_HERE"
-    }
+    "devices": [
+        {
+            "id": "NATURE_REMO_DEVICE_ID_HERE",
+            "name": "NATURE_REMO_ID_OF_OUR_TABLE_HERE"
+        }
+    ]
 }
