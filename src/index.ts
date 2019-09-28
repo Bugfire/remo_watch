@@ -30,7 +30,11 @@ const run = async (): Promise<void> => {
       return;
     }
     const r: { [key: string]: number | string } = {};
-    ["te", "hu", "il", "mo"].forEach(attr => r[attr] = typeof v.newest_events[attr] === "undefined" ? "NULL" : v.newest_events[attr].val);
+    const newestEvent = v.newest_events as { [key: string]: undefined | RemoAPI.RemoDeviceEvent };
+    ["te", "hu", "il", "mo"].forEach(attr => {
+      const p = newestEvent[attr];
+      r[attr] = typeof p === "undefined" ? "NULL" : p.val;
+    });
     // const timestamp = isoDateToJST(te.created_at);
     const timestamp = dbUtil.getDateJST();
     queries.push(
@@ -50,7 +54,7 @@ const wrappedRun = async (): Promise<void> => {
 
 const kick = async (): Promise<void> => {
   await wrappedRun();
-  new cron.CronJob("05 * * * * *", wrappedRun, null, true);
+  new cron.CronJob("05 * * * * *", wrappedRun, undefined, true);
 };
 
 kick();
