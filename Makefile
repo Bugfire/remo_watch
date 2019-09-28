@@ -21,7 +21,7 @@ lint: ## Run eslint
 	npm run lint
 
 dryrun: ## Run localy dryrun
-	NOlDE_ENV=DRYRUN npm run dev
+	NODE_ENV=DRYRUN npm run dev
 
 dev: ## Run localy
 	NODE_ENV=DEBUG npm run dev
