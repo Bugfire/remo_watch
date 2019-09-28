@@ -16,9 +16,7 @@ const CONFIG = LoadConfig(`${process.argv[2]}config/config.json`);
 
 const run = async (): Promise<void> => {
   const queries = [`DROP TABLE ${CONFIG.db.name}.${CONFIG.table};`];
-  console.log(queries);
   await dbUtil.connectAndQueries(CONFIG.db, queries);
-  process.exit(0);
 };
 
 run();

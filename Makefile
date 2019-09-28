@@ -27,10 +27,10 @@ dev: ## Run localy
 	NODE_ENV=DEBUG npm run dev
 
 create-table: ## Create table
-	npx ts-node src/tables/create_table.ts ./
+	NODE_ENV=DEBUG npx ts-node src/tables/create_table.ts ./
 
 drop-table: ## Drop table
-	npx ts-node src/tables/drop_table.ts ./
+	NODE_ENV=DEBUG npx ts-node src/tables/drop_table.ts ./
 
 clean: ## Clean docker container, images
 	docker ps -a | grep -v "CONTAINER" | awk '{print $$1}' | xargs docker rm
