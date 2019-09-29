@@ -23,12 +23,14 @@ interface MyConfig {
 
 const MyConfigType: ConfigType = {
   db: DBConfigType,
-  table: "string",
-  token: "string",
-  devices_array: {
-    id: "string",
-    name: "string"
-  }
+  table: "",
+  token: "",
+  devices: [
+    {
+      id: "",
+      name: ""
+    }
+  ]
 };
 
 /* eslint-enable @typescript-eslint/camelcase */
