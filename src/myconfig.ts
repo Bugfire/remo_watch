@@ -19,8 +19,6 @@ interface MyConfig {
   }[];
 }
 
-/* eslint-disable @typescript-eslint/camelcase */
-
 const MyConfigType: ConfigType = {
   db: DBConfigType,
   table: "",
@@ -32,8 +30,6 @@ const MyConfigType: ConfigType = {
     }
   ]
 };
-
-/* eslint-enable @typescript-eslint/camelcase */
 
 export const LoadConfig = (filename: string): MyConfig => {
   return LC<MyConfig>(fs.readFileSync(filename, "utf8"), MyConfigType);
